@@ -95,11 +95,14 @@ function renderItems() {
         }
                 </div>
                 <div class="item-controls">
-                    <div class="quantity-controls">
-                        <button data-tooltip="Зменшити кiлькiсть" class="quantity-btn minus" onclick="changeQuantity(${item.id}, -1)" ${item.quantity <= 1 ? 'disabled' : ''}>−</button>
-                        <span class="quantity-value">${item.quantity}</span>
-                        <button data-tooltip="Збiльшити кiлькiсть" class="quantity-btn plus" onclick="changeQuantity(${item.id}, 1)">+</button>
-                    </div>
+                    ${!item.bought ? `
+                        <div class="quantity-controls">
+                            <button data-tooltip="Зменшити кiлькiсть" class="quantity-btn minus" onclick="changeQuantity(${item.id}, -1)" ${item.quantity <= 1 ? 'disabled' : ''}>−</button>
+                            <span class="quantity-value">${item.quantity}</span>
+                            <button data-tooltip="Збiльшити кiлькiсть" class="quantity-btn plus" onclick="changeQuantity(${item.id}, 1)">+</button>
+                        </div>
+                    ` : ''}
+
                     <button data-tooltip="${item.bought ? 'Позначити як не куплено' : 'Позначити як куплено'}"
                         class="status-btn ${item.bought ? 'bought' : ''}" onclick="toggleBought(${item.id})">
                         ${item.bought ? 'Куплено' : 'Не куплено'}
@@ -144,7 +147,7 @@ function updateStats() {
         const tag = document.createElement('div');
         tag.className = 'stats-tag';
         tag.innerHTML = `
-                <span>${item.name}</span>
+                <span class="item-name ${item.bought ? 'crossed' : ''}">${item.name}</span>
                 <span class="quantity">${item.quantity}</span>
             `;
         boughtStats.appendChild(tag);
