@@ -1,0 +1,378 @@
+:root {
+    --color-background: #f5f5f5;
+    --color-white: #ffffff;
+    --color-text: #333333;
+    --color-border: #ddd;
+    --color-border-light: #eee;
+    --color-text-muted: #888;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+
+    --color-primary: #4285f4;
+    --color-primary-hover: #3367d6;
+    --color-delete: #ea4335;
+    --color-delete-hover: #d33b2c;
+    --color-success: #34a853;
+    --color-success-hover: #2d8e47;
+    --color-disabled: #cccccc;
+    --color-tag-bg: #f1f3f4;
+    --color-badge: #9c27b0;
+    --color-badge-hover: #7b1fa2;
+    --color-tooltip: #9c27b0;
+    --color-gray: #f8f9fa;
+    --color-orange: #ff6d01;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background-color: var(--color-background);
+    padding: 20px;
+    min-height: 100vh;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+@media (max-width: 650px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+.shopping-list {
+    background: var(--color-white);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e8eaed;
+    flex: 2;
+    min-width: 0;
+}
+
+.statistics {
+    background: var(--color-white);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e8eaed;
+    flex: 1;
+    min-width: 300px;
+}
+
+h1, h2, h3 {
+    margin-bottom: 16px;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.add-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+#newItemInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    font-size: 16px;
+    background: var(--color-white);
+    transition: border-color 0.2s;
+}
+
+#newItemInput:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+#addItemBtn {
+    padding: 12px 24px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+#addItemBtn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+#itemsList {
+    list-style: none;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f1f3f4;
+    height: 92px;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    flex: 1;
+    font-size: 16px;
+    color: var(--color-text);
+    font-weight: 400;
+    min-width: 0;
+    margin-right: 16px;
+}
+
+.item-name.bought {
+    text-decoration: line-through;
+    color: #5f6368;
+}
+
+.item-name input {
+    width: 100%;
+    padding: 8px 16px;
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    font-size: 16px;
+    background: #e8f0fe;
+    outline: none;
+}
+
+.item-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.quantity-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--color-white);
+    transition: transform 0.1s, box-shadow 0.2s;
+    flex-shrink: 0;
+}
+
+.quantity-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.quantity-btn.minus {
+    background-color: var(--color-delete);
+}
+
+.quantity-btn.minus:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.quantity-btn.plus {
+    background-color: var(--color-success);
+}
+
+.quantity-value {
+    min-width: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.status-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f1f3f4;
+    color: #5f6368;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    width: 120px;
+    text-align: center;
+}
+
+.status-btn:hover {
+    background-color: #e8eaed;
+}
+
+.status-btn.bought {
+    background-color: #e8f5e8;
+    color: var(--color-success);
+}
+
+.delete-btn {
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-delete);
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.delete-btn:hover {
+    background-color: var(--color-delete-hover);
+    transform: scale(1.05);
+}
+
+.statistics h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.to-buy, .bought {
+    margin-bottom: 32px;
+}
+
+.stats-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.stats-tag {
+    background-color: var(--color-tag-bg);
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    border: 1px solid #e8eaed;
+}
+
+.stats-tag span{
+    text-decoration: line-through;
+}
+
+.stats-tag .quantity {
+    background-color: var(--color-orange);
+    color: var(--color-white);
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Badge Styles */
+.badge {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: var(--color-badge);
+    color: var(--color-white);
+    padding: 16px 24px;
+    border-top-right-radius: 12px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.badge-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.badge-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.badge-author {
+    display: none;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.badge:hover {
+    background-color: var(--color-badge-hover);
+    transform: translateY(0px);
+}
+
+.badge:hover .badge-author {
+    display: block;
+    opacity: 1;
+}
+
+/* Tooltip Styles */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    padding: 8px 12px;
+    background-color: var(--color-badge);
+    color: var(--color-white);
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+[data-tooltip]:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список покупок</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="shopping-list">
+            <div class="add-item">
+                <input type="text" id="newItemInput" placeholder="Назва товару">
+                <button id="addItemBtn" data-tooltip="Додати новий товар">Додати</button>
+            </div>
+            <ul id="itemsList"></ul>
+        </div>
+        <div class="statistics">
+            <div class="to-buy">
+                <h2>Залишилося</h2>
+                <div id="toBuyStats" class="stats-tags"></div>
+            </div>
+            <div class="bought">
+                <h2>Куплено</h2>
+                <div id="boughtStats" class="stats-tags"></div>
+            </div>
+        </div>
+    </div>
+    <div class="badge">
+        <div class="badge-content">
+            <span class="badge-title">Buy List</span>
+            <span class="badge-author">Created by: Zakhar Yermolovych</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
